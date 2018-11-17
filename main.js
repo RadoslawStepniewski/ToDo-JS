@@ -1,15 +1,22 @@
-const li = document.querySelectorAll('li')
+const form = document.querySelector('form');
 const ul = document.querySelector('ul')
+const spn = document.querySelector(' h1 span')
+const list = document.querySelectorAll('li.task')
 const input = document.querySelector('input')
 
-const searchTask = (e) => {
-    const searchText = e.target.value.toLowerCase()
-    let tasks = [...li]
-    tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText))
-    console.log(tasks)
-    ul.textContent = ""
-    tasks.forEach(li => ul.appendChild(li))
 
+const addTask = (e) => {
+    e.preventDefault()
+
+    const titleTasks = input.value
+    if (titleTasks !== "") {
+        const task = document.createElement('li');
+        task.className = 'task'
+        task.innerHTML = titleTasks + "<button>Usuń</button>"
+        ul.appendChild(task)
+    }
+    input.value = ""
 }
 
-input.addEventListener('input', searchTask)
+
+form.addEventListener('submit', addTask)
