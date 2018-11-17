@@ -1,7 +1,15 @@
-const li = document.querySelectorAll('li');
+const li = document.querySelectorAll('li')
+const ul = document.querySelector('ul')
+const input = document.querySelector('input')
 
-const removeLi = (e) => {
-    e.target.remove()
+const searchTask = (e) => {
+    const searchText = e.target.value.toLowerCase()
+    let tasks = [...li]
+    tasks = tasks.filter(li => li.textContent.toLowerCase().includes(searchText))
+    console.log(tasks)
+    ul.textContent = ""
+    tasks.forEach(li => ul.appendChild(li))
+
 }
 
-li.forEach(e => e.addEventListener('click', removeLi))
+input.addEventListener('input', searchTask)
